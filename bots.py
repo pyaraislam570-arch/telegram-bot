@@ -20,7 +20,7 @@ states = {}
 
 MENU_BUTTONS = [
     [KeyboardButton("3GB"), KeyboardButton("2GB")],
-    [KeyboardButton("50MB"), KeyboardButton("Minutes")],
+    [KeyboardButton("50MB"), KeyboardButton("50Minutes")],
 ]
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -65,21 +65,21 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # Step: waiting for number
     if state["step"] == "await_number":
-        # basic validation — just demo
+        # basic validation
         num = text.replace(" ", "")
         if not (num.startswith("03") and len(num) == 11 and num.isdigit()):
             await update.message.reply_text("Number sahi format mein nahin hai. Example: 03312345678\nDobara try karein.")
             return
 
         state["number"] = num
-        # generate fake OTP
+        # generate  OTP
         otp = f"{random.randint(1000, 9999)}"
         state["otp"] = otp
         state["step"] = "await_otp"
 
-        # In real system, OTP would be sent by telecom. Here we SHOW the OTP (demo).
+        # In real system, OTP would be sent by telecom. Here we SHOW the OTP.
         await update.message.reply_text(
-            f"Demo: OTP bhej diya gaya hai aapko (fake). OTP: *{otp}*\n\nPlease enter the OTP to confirm.",
+            f": OTP bhej diya gaya hai aapko . OTP: *{otp}*\n\nPlease enter the OTP to confirm.",
             parse_mode="Markdown"
         )
         return
@@ -89,9 +89,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         entered = text.strip()
         if entered == state.get("otp"):
             choice = state.get("choice", "package")
-            # success — "activate" the package (demo)
+            # success — "activate" the package Mazy Kawa
             await update.message.reply_text(
-                f"OTP verified ✅\n\nCongratulations! {choice} has been activated (demo confirmation)."
+                f"OTP verified ✅\n\nCongratulations! {choice} has been activated ."
             )
             # clear state
             states.pop(chat_id, None)
@@ -113,3 +113,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
