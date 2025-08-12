@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     states.pop(chat_id, None)
 
     # Salam + dua
-    await update.message.reply_text("Assalamualaikum —  Allah apko khush rakhe 🤲\n\nAb niche se apni choice select karein.")
+    await update.message.reply_text("Assalamualaikum —  Allah apko khush rakhe 🤲\n\nAb niche se apni choice select karein. aor mazy kary.")
     # show menu
     reply_markup = ReplyKeyboardMarkup(MENU_BUTTONS, resize_keyboard=True, one_time_keyboard=True)
     await update.message.reply_text("Select package:", reply_markup=reply_markup)
@@ -113,4 +113,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
